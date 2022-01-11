@@ -1,8 +1,8 @@
 <?php
 /**
-* Plugin Name: WP CRUD EDMIN
+* Plugin Name: WP ADMIN ROLE
 * Description: Ejemplo Basico 
-* Version:     1.3
+* Version:     1.0
 * Plugin URI: https://guidorios.cl/wp-basic-crud-plugin-wordpress/
 * Author:      Guido Rios Ciaffaroni
 * Author URI:  https://guidorios.cl/
@@ -13,7 +13,7 @@
 */
 
 /******************************************************************************************/
-// Archivo : wp-crud
+// Archivo : index.php
 // Funcion : 
 
 /******************************************************************************************/
@@ -22,26 +22,6 @@ defined( 'ABSPATH' ) or die( '¡Sin trampas!' );
 
 /*Importa funciones de instalacion*/
 
-
-
-require_once plugin_dir_path( __FILE__ ) . 'includes/variable.php';
-// Instalacion del Sistema Base de datos
-require_once plugin_dir_path( __FILE__ ) . 'includes/install/install.php';
-// Formuario de acceso en frontend
-require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_insert.php';
-// Formuario de acceso en frontend
-require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_update.php';
-// Formuario de acceso en frontend
-require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_delete.php';
-// Formuario de acceso en frontend
-require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_edit.php';
-// Funciones de seguridad 
-require_once plugin_dir_path( __FILE__ ) . 'includes/security/secure.php';
-// Funciones para la generacion de Blade 
-require_once plugin_dir_path( __FILE__ ) . 'includes/layout/blade.php';
-
-/*Funciones requeridas para administrar y gestionar */
-
 // Funciones requeridas para gestionar archivos
 require_once(ABSPATH . "wp-admin" . '/includes/image.php');
 require_once(ABSPATH . "wp-admin" . '/includes/file.php');
@@ -49,39 +29,78 @@ require_once(ABSPATH . "wp-admin" . '/includes/media.php');
 // Funciones requeridas para gestionar la base de datos
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-/*Variables globales*/
-global $wpdb;                   // Datos del sistema
-global $wpbc_db_version;        // Version del base de datos - utilizado para las actualizaciones
-global $sist_name_file;         // Nombre de la tabla de General del sistema 
-global $sist_name_departament;  // Nombre de la tabla de Depart 
-global $tabla_crud;             // Nombre de la tabla de sistema
-global $user_id;                // ID del usuario
-global $status_user;            // Perfil del usuario 
-global $user_dirname;
-global $upload_dir;
-global $dir_file;               // Nombre de archivo a subir
-global $global_data;            // Almacenamiento de datos Globales
-global $file_name;  
-global $wp_session;             // Inicio sesion variables
-global $global_data;
 
-$wpbc_db_version = '1.1.0'; 
 
-/*Nombre base de datos*/
-$sist_name_file = 'crud_file';
-$sist_name_departament = 'crud_departament'; 
+/******************************************************************************************/
+// Archivo : index.php
+// Funcion : Kfp_Insert_form() 'funcion para el ingreso de datos'
+// Objetos : $wpdb->insert
 
-$user_id = get_current_user_id();
+/******************************************************************************************/
 
-/* Instalacion de Base de datos */
-wpdb_install();
-wpdb_seed();
-register_activation_hook(__FILE__, 'wpdb_install');
-register_activation_hook(__FILE__, 'wpdb_seed');
+
+
+
+
+
+
+
+
+
 
 /*Inicio crear shortcode en la pagina de inicio */
-//add_shortcode('kfp_ShotCondeInsert_form', 'Kfp_Insert_form');
+add_shortcode('kfp_ShortCode_User', 'Kfp_User');
 /*Fin crear shortcode enla pagina de inicio*/ 
+
+
+
+
+
+
+
+/*Inicio funcion para crear shortcode en la pagina de inicio */
+function Kfp_User() 
+{
+
+	/*Variables globales*/
+	global $wpdb;                   // datos del sistema
+	echo '--->'.get_current_user_id().'<br>'; 
+    $current_user = wp_get_current_user();
+    
+ 	printf( __( 'Username: %s <br/>', 'textdomain' ), esc_html( $current_user->user_login ) );
+	printf( __( 'User email: %s <br/>', 'textdomain' ), esc_html( $current_user->user_email ) );
+	printf( __( 'User first name: %s <br/>', 'textdomain' ), esc_html( $current_user->user_firstname ) );
+	printf( __( 'User last name: %s <br/>', 'textdomain' ), esc_html( $current_user->user_lastname ) );
+	printf( __( 'User display name: %s <br/>', 'textdomain' ), esc_html( $current_user->display_name ) );
+	printf( __( 'User ID: %s <br/>', 'textdomain' ), esc_html( $current_user->ID ) );
+
+
+/*
+ * @example Safe usage: $current_user = wp_get_current_user();
+ * if ( ! ( $current_user instanceof WP_User ) ) {
+ *     return;
+ * }
+ */
+
+
+
+
+
+
+
+
+
+	
+} 
+
+
+
+
+
+
+
+
+
 
 
 
