@@ -40,22 +40,9 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
 
 
-
-
-
-
-
-
-
-
 /*Inicio crear shortcode en la pagina de inicio */
 add_shortcode('kfp_ShortCode_User', 'Kfp_User');
 /*Fin crear shortcode enla pagina de inicio*/ 
-
-
-
-
-
 
 
 /*Inicio funcion para crear shortcode en la pagina de inicio */
@@ -73,36 +60,10 @@ function Kfp_User()
 	printf( __( 'User last name: %s <br/>', 'textdomain' ), esc_html( $current_user->user_lastname ) );
 	printf( __( 'User display name: %s <br/>', 'textdomain' ), esc_html( $current_user->display_name ) );
 	printf( __( 'User ID: %s <br/>', 'textdomain' ), esc_html( $current_user->ID ) );
+	printf( __( 'Role: %s <br/>', 'textdomain' ), esc_html( $current_user->roles[0] ) );
+	echo get_avatar( $current_user->user_email, 200 ); 
+	echo get_avatar_url( $current_user->user_email);
 
-
-/*
- * @example Safe usage: $current_user = wp_get_current_user();
- * if ( ! ( $current_user instanceof WP_User ) ) {
- *     return;
- * }
- */
-
-
-
-
-
-
-
-
-
-	
 } 
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
