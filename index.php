@@ -51,9 +51,9 @@ function Kfp_User()
 
 	/*Variables globales*/
 	global $wpdb;                   // datos del sistema
-	echo '--->'.get_current_user_id().'<br>'; 
+	// echo '--->'.get_current_user_id().'<br>'; 
     $current_user = wp_get_current_user();
-    
+    /*
  	printf( __( 'Username: %s <br/>', 'textdomain' ), esc_html( $current_user->user_login ) );
 	printf( __( 'User email: %s <br/>', 'textdomain' ), esc_html( $current_user->user_email ) );
 	printf( __( 'User first name: %s <br/>', 'textdomain' ), esc_html( $current_user->user_firstname ) );
@@ -63,7 +63,135 @@ function Kfp_User()
 	printf( __( 'Role: %s <br/>', 'textdomain' ), esc_html( $current_user->roles[0] ) );
 	echo get_avatar( $current_user->user_email, 200 ); 
 	echo get_avatar_url( $current_user->user_email);
+	*/
+
+
+
+
+
+
+echo '
+
+					
+
+
+							<div class="module-body">
+									<br />
+
+									<form class="form-horizontal row-fluid">
+
+
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Imagen</label>
+											<div class="controls">
+												'.
+												get_avatar( $current_user->user_email, 200 )
+												.'
+											</div>
+										</div>
+
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Nombre de usuario</label>
+											<div class="controls">
+												'.
+												$current_user->user_login
+												.'
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Email</label>
+											<div class="controls">
+												'.
+												$current_user->user_email
+												.'
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Nombre</label>
+											<div class="controls">
+												'.
+												$current_user->user_firstname
+												.'
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Apellido</label>
+											<div class="controls">
+												'.
+												$current_user->user_lastname
+												.'
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Display Name</label>
+											<div class="controls">
+												'.
+												$current_user->display_name
+												.'
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Rol</label>
+											<div class="controls">
+												'.
+												$current_user->roles[0]
+												.'
+											</div>
+										</div>
+
+									</form>
+							</div>
+					
+
+						
+						
+					
+
+
+';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
